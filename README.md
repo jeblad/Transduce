@@ -3,4 +3,4 @@ This extension for Mediawiki adds language transducers for Lua modules. Such tra
 
 ## Sources
 
-- Chapter 3, **Speech and Language Processing**, Second Edition. Daniel Jurafsky, James H. Martin.
+- Chapter 3, *Speech and Language Processing*, Second Edition. Daniel Jurafsky, James H. Martin.
