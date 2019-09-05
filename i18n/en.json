@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jeblad"
+		]
+	},
+	"transduce-desc": "Provides advanced transducers to Lua modules"
+}
