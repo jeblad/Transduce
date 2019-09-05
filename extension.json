@@ -15,9 +15,9 @@
 		}
 	},
 	"AutoloadClasses": {
-		"Expect\\Hooks":
+		"Transduce\\Hooks":
 			"includes/Hooks.php",
-		"Expect\\LuaLibExpect":
+		"Transduce\\LuaLibExpect":
 			"includes/LuaLibrary/LuaLibTransduce.php"
 	},
 	"config_prefix": "wgTransduce",
