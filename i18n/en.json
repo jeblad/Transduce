@@ -4,5 +4,5 @@
 			"Jeblad"
 		]
 	},
-	"transduce-desc": "Provides advanced transducers to Lua modules"
+	"transduce-desc": "Provides morphologic recognition and generation of text"
 }
