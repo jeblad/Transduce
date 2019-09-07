@@ -1,0 +1,6 @@
+[submodule "Transduce.wiki"]
+	path = Transduce.wiki
+	url = https://github.com/jeblad/Transduce.wiki.git
+[submodule "topics"]
+	path = topics
+	url = git@github.com:jeblad/Transduce.wiki.git
