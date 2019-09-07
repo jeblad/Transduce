@@ -1,44 +1,43 @@
--- don't pollute with globals
-require('Module:No globals')
-
-local SINGLE = 1
-local MULTIPLE = 2
-local ALTERNATE = 4
-
 local dfsa = {}
 
-function dfsa.next( index, current, tape, transitions )
-	if not current then
-		return nil
-	elseif transitions[current] == true then
+function dfsa.next( index, state, tape, engine )
+	local node = engine[state]
+	if not node then
+		return false
+	end
+	if node[1] == nil then
 		return true
-	elseif transitions[current][1] == SINGLE then
-		return mw.ustring.sub(tape, index, index) == transitions[current][3] and transitions[current][2] or nil
-	elseif transitions[current][1] == MULTIPLE then
-		for _,transition in ipairs( transitions[current][2] ) do
-			if mw.ustring.sub(tape, index, index) == transition[2] then
-				return transition[1]
+	end
+	local subType = type( node[1] )
+	if subType == 'string' then
+		return mw.ustring.sub( tape, index, index ) == node[1] and node[2] or false
+	end
+	if subType == 'table' then
+		for _,v in ipairs( node ) do
+			if mw.ustring.sub(tape, index, index) == v[1] then
+				return v[2]
 			end
 		end
-		return nil
+		return false
 	end
-	return nil, 'Wrong state transfer type'
+	return nil, 'Wrong type of engine transition'
 end
 
 --- drecognize
-function dfsa.eval( tape, transitions )
-	local index = 1
-	local current = 1
+function dfsa.recognize( tape, engine )
+	local index = 1 -- pointer to code point on tape
+	local state = 1 -- pointer to state of engine
 	local tapeLength = mw.ustring.len( tape )
 
 	repeat
+		-- out of tape
 		if index > tapeLength then
-			local lookahead = dfsa.next( index, current, tape, transitions )
-			return (lookahead == true) and true or false
-		elseif not current then
-			return false
+			state = dfsa.next( index, state, tape, engine )
+			return (state == true) -- accept on existing lookahead, reject otherwise
+		elseif not state then
+			return false -- reject on failing engine state
 		else
-			current = dfsa.next( index, current, tape, transitions )
+			state = dfsa.next( index, state, tape, engine )
 			index = index+1
 		end
 	until false

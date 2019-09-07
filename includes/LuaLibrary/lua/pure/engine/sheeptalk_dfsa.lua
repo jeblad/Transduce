@@ -1,23 +1,20 @@
 return {
 	label = 'DFSA for Sheeptalk, ref Speech and Language Processing, page 62',
 	type = 'dfsa',
-	--  first is type of structure
-	--  second is a number or list, ref type in first
-	--  third is the input string
-	--  fourth might be a label
+	--  first is a string used as a label, or a list
+	--  second is a number pointing to a state
 	transitions = {
 		-- state 0
-		{ 1, 2, 'b' },
+		{ 'b', 2 },
 		-- state 1
-		{ 1, 3, 'a' },
+		{ 'a', 3 },
 		-- state 2
-		{ 1, 4, 'a' },
+		{ 'a', 4 },
 		-- state 3
-		{ 2, {
-			{ 4, 'a'},
-			{ 5, '!'}
-			}
+		{
+			{ 'a', 4 },
+			{ '!', 5 },
 		},
-		true
+		{}
 	}
 }
