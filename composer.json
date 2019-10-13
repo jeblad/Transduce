@@ -49,7 +49,7 @@
 			"find modules/images -type d -path minified -prune -o -type d -execdir svgo --pretty --indent=2 -i . -o ./minified \\;"
 		],
 		"unit": [
-			"php ../../tests/phpunit/phpunit.php --wiki wiki --group Transduce"
+			"php ../../tests/phpunit/phpunit.php --wiki wiki --exclude-group LuaStandalone --group Transduce"
 		],
 		"codesize": [
 			"phpmd ./includes/ text codesize",
